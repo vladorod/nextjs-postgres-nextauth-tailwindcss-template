@@ -10,10 +10,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { SelectProduct } from '@/lib/db';
 import { deleteProduct } from './actions';
-
-export function Product({ product }: { product: SelectProduct }) {
+import { Prisma } from '.prisma/client';
+type ProductsUncheckedCreateInput = Prisma.ProductsUncheckedCreateInput;
+export function Product({
+  product
+}: {
+  product: ProductsUncheckedCreateInput;
+}) {
   return (
     <TableRow>
       <TableCell className="hidden sm:table-cell">
@@ -31,25 +35,25 @@ export function Product({ product }: { product: SelectProduct }) {
           {product.status}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${product.price}`}</TableCell>
+      <TableCell className="hidden md:table-cell">{`${product.price} ₽`}</TableCell>
       <TableCell className="hidden md:table-cell">{product.stock}</TableCell>
       <TableCell className="hidden md:table-cell">
-        {product.availableAt.toLocaleDateString("en-US")}
+        {product.availableAt.toLocaleDateString('ru-RU')}
       </TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button aria-haspopup="true" size="icon" variant="ghost">
               <MoreHorizontal className="h-4 w-4" />
-              <span className="sr-only">Toggle menu</span>
+              <span className="sr-only">Меню</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuLabel>Действия</DropdownMenuLabel>
+            <DropdownMenuItem>Редактировать</DropdownMenuItem>
             <DropdownMenuItem>
               <form action={deleteProduct}>
-                <button type="submit">Delete</button>
+                <button type="submit">Удалить</button>
               </form>
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -20,13 +20,15 @@ import { SelectProduct } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Prisma } from '.prisma/client';
+import ProductsCreateInput = Prisma.ProductsUncheckedCreateInput;
 
 export function ProductsTable({
   products,
   offset,
   totalProducts
 }: {
-  products: SelectProduct[];
+  products: ProductsCreateInput[];
   offset: number;
   totalProducts: number;
 }) {
@@ -44,10 +46,8 @@ export function ProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
-        <CardDescription>
-          Manage your products and view their sales performance.
-        </CardDescription>
+        <CardTitle>Товары</CardTitle>
+        <CardDescription>Товары вашей компании</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>
@@ -56,13 +56,11 @@ export function ProductsTable({
               <TableHead className="hidden w-[100px] sm:table-cell">
                 <span className="sr-only">Image</span>
               </TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="hidden md:table-cell">Price</TableHead>
-              <TableHead className="hidden md:table-cell">
-                Total Sales
-              </TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead>Название</TableHead>
+              <TableHead>Статус</TableHead>
+              <TableHead className="hidden md:table-cell">Цена</TableHead>
+              <TableHead className="hidden md:table-cell">Остаток</TableHead>
+              <TableHead className="hidden md:table-cell">Создано</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
@@ -70,7 +68,7 @@ export function ProductsTable({
           </TableHeader>
           <TableBody>
             {products.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product key={product} product={product} />
             ))}
           </TableBody>
         </Table>
@@ -78,11 +76,15 @@ export function ProductsTable({
       <CardFooter>
         <form className="flex items-center w-full justify-between">
           <div className="text-xs text-muted-foreground">
-            Showing{' '}
+            Показанно{' '}
             <strong>
-              {Math.max(0, Math.min(offset - productsPerPage, totalProducts) + 1)}-{offset}
+              {Math.max(
+                0,
+                Math.min(offset - productsPerPage, totalProducts) + 1
+              )}
+              -{offset}
             </strong>{' '}
-            of <strong>{totalProducts}</strong> products
+            из <strong>{totalProducts}</strong> товаров
           </div>
           <div className="flex">
             <Button
@@ -93,7 +95,7 @@ export function ProductsTable({
               disabled={offset === productsPerPage}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Prev
+              Назад
             </Button>
             <Button
               formAction={nextPage}
@@ -102,7 +104,7 @@ export function ProductsTable({
               type="submit"
               disabled={offset + productsPerPage > totalProducts}
             >
-              Next
+              Далее
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

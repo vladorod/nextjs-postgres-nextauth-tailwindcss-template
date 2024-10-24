@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+model Products {
+  id          Int      @id @default(autoincrement()) // Уникальный идентификатор
+  imageUrl    String? // URL изображения (необязательно)
+  name        String // Название продукта
+  status      Status   @default(ACTIVE)
+  price       Float // Цена продукта
+  stock       Int // Количество на складе
+  availableAt DateTime // Дата, с которой продукт будет доступен
+  createdAt   DateTime @default(now()) // Дата создания записи
+  updatedAt   DateTime @updatedAt // Дата последнего обновления
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  username String?
+}

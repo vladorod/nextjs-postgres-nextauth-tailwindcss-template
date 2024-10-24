@@ -4,11 +4,9 @@ import { Button } from '@/components/ui/button';
 import { ProductsTable } from './products-table';
 import { getProducts } from '@/lib/db';
 
-export default async function ProductsPage(
-  props: {
-    searchParams: Promise<{ q: string; offset: string }>;
-  }
-) {
+export default async function ProductsPage(props: {
+  searchParams: Promise<{ q: string; offset: string }>;
+}) {
   const searchParams = await props.searchParams;
   const search = searchParams.q ?? '';
   const offset = searchParams.offset ?? 0;
@@ -21,24 +19,24 @@ export default async function ProductsPage(
     <Tabs defaultValue="all">
       <div className="flex items-center">
         <TabsList>
-          <TabsTrigger value="all">All</TabsTrigger>
-          <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="draft">Draft</TabsTrigger>
+          <TabsTrigger value="all">Все</TabsTrigger>
+          <TabsTrigger value="active">Активные</TabsTrigger>
+          <TabsTrigger value="draft">Черновик</TabsTrigger>
           <TabsTrigger value="archived" className="hidden sm:flex">
-            Archived
+            Архив
           </TabsTrigger>
         </TabsList>
         <div className="ml-auto flex items-center gap-2">
           <Button size="sm" variant="outline" className="h-8 gap-1">
             <File className="h-3.5 w-3.5" />
             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Export
+              Выгрузить
             </span>
           </Button>
           <Button size="sm" className="h-8 gap-1">
             <PlusCircle className="h-3.5 w-3.5" />
             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Add Product
+              Добавить товар
             </span>
           </Button>
         </div>

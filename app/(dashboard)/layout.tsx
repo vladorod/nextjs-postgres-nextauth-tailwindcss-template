@@ -131,35 +131,35 @@ function MobileNav() {
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Home className="h-5 w-5" />
-            Dashboard
+            Рабочий стол
           </Link>
           <Link
             href="#"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <ShoppingCart className="h-5 w-5" />
-            Orders
+            Заказы
           </Link>
           <Link
             href="#"
             className="flex items-center gap-4 px-2.5 text-foreground"
           >
             <Package className="h-5 w-5" />
-            Products
+            Товары
           </Link>
           <Link
             href="#"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Users2 className="h-5 w-5" />
-            Customers
+            Сотрудники
           </Link>
           <Link
             href="#"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <LineChart className="h-5 w-5" />
-            Settings
+            Настройки
           </Link>
         </nav>
       </SheetContent>
@@ -173,18 +173,18 @@ function DashboardBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Dashboard</Link>
+            <Link href="#">Рабочий стол</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Products</Link>
+            <Link href="#">Продукты</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>All Products</BreadcrumbPage>
+          <BreadcrumbPage>Все товары</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

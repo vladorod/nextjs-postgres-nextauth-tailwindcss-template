@@ -33,10 +33,10 @@ export async function User() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuItem>Настройки</DropdownMenuItem>
+        <DropdownMenuItem>Поддежрка</DropdownMenuItem>
         <DropdownMenuSeparator />
         {user ? (
           <DropdownMenuItem>
@@ -51,7 +51,7 @@ export async function User() {
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>
-            <Link href="/login">Sign In</Link>
+            <Link href="/login">Вход</Link>
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>
